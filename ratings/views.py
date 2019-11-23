@@ -26,6 +26,11 @@ class TitleDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Title.objects.all()
     name = 'title-detail'
 
+class TitleStarringList(generics.ListCreateAPIView):
+    serializer_class = TitleStarringSerializer
+    name = 'title-starring-list'
+    queryset = Starring.objects.all()
+
 class ApiRoot(APIView):
     name = 'api-root'
     
@@ -33,4 +38,5 @@ class ApiRoot(APIView):
         return Response({
             'starrings': reverse(StarringList.name, request=request),
             'titles': reverse(TitleList.name, request=request),
+            'starring-titles': reverse(TitleStarringList.name, request=request)
         })

@@ -7,4 +7,5 @@ urlpatterns = [
     path('starrings/<int:pk>', StarringDetail.as_view(), name=StarringDetail.name),
     path('titles', TitleList.as_view(), name=TitleList.name),
     path('titles/<int:pk>', TitleDetail.as_view(), name=TitleDetail.name),
+    path('starring-titles', TitleStarringList.as_view(), name=TitleStarringList.name)
 ]
