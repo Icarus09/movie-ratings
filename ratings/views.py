@@ -16,10 +16,21 @@ class StarringDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Starring.objects.all()
     name = 'starring-detail'
 
+class TitleList(generics.ListCreateAPIView):
+    serializer_class = TitleSerializer
+    queryset = Title.objects.all()
+    name = 'title-list'
+
+class TitleDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TitleSerializer
+    queryset = Title.objects.all()
+    name = 'title-detail'
+
 class ApiRoot(APIView):
     name = 'api-root'
     
     def get(self, request, *args, **kwargs):
         return Response({
             'starrings': reverse(StarringList.name, request=request),
+            'titles': reverse(TitleList.name, request=request),
         })

@@ -9,10 +9,19 @@ class Starring(models.Model):
     class Meta:
         ordering = ('name',)
 
+    def __str__(self):
+        return self.name
+
 class Title(models.Model):
     name = models.CharField(max_length=255)
     year = models.IntegerField()
     starring = models.ForeignKey(Starring, on_delete=models.CASCADE, related_name='starrings')
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
 
 class Rate(models.Model):
     note = models.IntegerField()
@@ -23,3 +32,9 @@ class Profile(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     ratings = models.ManyToManyField(Rate, related_name='ratings')
+
+    class Meta:
+        ordering = ('name',)
+    
+    def __str__(self):
+        return self.name
