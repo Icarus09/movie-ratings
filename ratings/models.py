@@ -5,6 +5,16 @@ from django.contrib.auth.models import User
 class Starring(models.Model):
     name = models.CharField(max_length=255)
     age = models.IntegerField()
+    nationality = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+class Gender(models.Model):
+    name = models.CharField(max_length=255)
 
     class Meta:
         ordering = ('name',)
@@ -15,6 +25,7 @@ class Starring(models.Model):
 class Title(models.Model):
     name = models.CharField(max_length=255)
     year = models.IntegerField()
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='titles')
     starring = models.ForeignKey(Starring, on_delete=models.CASCADE, related_name='starrings')
 
     class Meta:
