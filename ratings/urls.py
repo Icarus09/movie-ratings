@@ -14,4 +14,6 @@ urlpatterns = [
     path('starring-titles', TitleStarringList.as_view(), name=TitleStarringList.name),
     path('profiles', ProfileList.as_view(), name=ProfileList.name),
     path('profiles/<int:pk>', ProfileDetail.as_view(), name=ProfileDetail.name),
+    path('ratings', RatingList.as_view(), name=RatingList.name),
+    path('ratings/<int:pk>', RatingDetail.as_view(), name=RatingDetail.name),
 ]

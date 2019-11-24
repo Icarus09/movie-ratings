@@ -14,7 +14,7 @@ class TitleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Title
-        fields = ('url', 'name', 'gender', 'year', 'starring')
+        fields = ('url', 'name', 'gender', 'year', 'starring', )
 
 class GenderSerializer(serializers.HyperlinkedModelSerializer):
     titles = TitleSerializer(read_only=True, many=True)
@@ -47,3 +47,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'pk', 'username', 'email')
+
+class RatingSerializer(serializers.HyperlinkedModelSerializer):
+    title = serializers.SlugRelatedField(queryset=Title.objects.all(), slug_field='name')
+    profile = serializers.SlugRelatedField(queryset=Profile.objects.all(), slug_field='name')
+
+    class Meta:
+        model = Rate
+        fields = ('note', 'profile', 'title')

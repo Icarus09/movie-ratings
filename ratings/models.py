@@ -27,6 +27,7 @@ class Title(models.Model):
     year = models.IntegerField()
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='titles')
     starring = models.ForeignKey(Starring, on_delete=models.CASCADE, related_name='starrings')
+    #average = models.FloatField(blank=True, null=True)
 
     class Meta:
         ordering = ('name',)
@@ -34,18 +35,18 @@ class Title(models.Model):
     def __str__(self):
         return self.name
 
-class Rate(models.Model):
-    note = models.IntegerField()
-    title = models.ForeignKey(Title, related_name='titles', on_delete=models.CASCADE)
-
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profiles')
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    ratings = models.ManyToManyField(Rate, related_name='ratings')
 
     class Meta:
         ordering = ('name',)
     
     def __str__(self):
         return self.name
+
+class Rate(models.Model):
+    note = models.IntegerField()
+    title = models.ForeignKey(Title, related_name='titles', on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, related_name='ratings', on_delete=models.CASCADE)

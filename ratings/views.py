@@ -62,6 +62,16 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     name = 'user-detail'
 
+class RatingList(generics.ListCreateAPIView):
+    serializer_class = RatingSerializer
+    queryset = Rate.objects.all()
+    name = 'rate-list'
+
+class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = RatingSerializer
+    queryset = Rate.objects.all()
+    name = 'rate-detail'
+
 class ApiRoot(APIView):
     name = 'api-root'
     
@@ -72,5 +82,6 @@ class ApiRoot(APIView):
             'titles': reverse(TitleList.name, request=request),
             'genders': reverse(GenderList.name, request=request),
             'starring-titles': reverse(TitleStarringList.name, request=request),
-            'profile-list': reverse(ProfileList.name, request=request)
+            'profile-list': reverse(ProfileList.name, request=request),
+            'ratings': reverse(RatingList.name, request=request)
         })
