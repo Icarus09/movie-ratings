@@ -1,12 +1,12 @@
 from .models import *
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 class StarringSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Starring
         fields = ('name', 'age', 'nationality')
-
 
 class TitleSerializer(serializers.HyperlinkedModelSerializer):
     starring = serializers.SlugRelatedField(slug_field='name', queryset=Starring.objects.all())
@@ -15,7 +15,6 @@ class TitleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Title
         fields = ('url', 'name', 'gender', 'year', 'starring')
-
 
 class GenderSerializer(serializers.HyperlinkedModelSerializer):
     titles = TitleSerializer(read_only=True, many=True)
@@ -30,3 +29,21 @@ class TitleStarringSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Starring
         fields = ('name', 'age', 'starrings')
+
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+
+    def create(self, validated_data):
+        user_created = User.objects.create_user(username=validated_data['name'],
+                                                email=validated_data['email'],
+                                                password='senha')
+        return Profile.objects.create(user=user_created, **validated_data)
+    
+    class Meta:
+        model = Profile
+        fields = ('name', 'email')
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('url', 'pk', 'username', 'email')
