@@ -30,8 +30,15 @@ class TitleStarringSerializer(serializers.HyperlinkedModelSerializer):
         model = Starring
         fields = ('name', 'age', 'starrings')
 
-class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+class RatingShowSerializer(serializers.HyperlinkedModelSerializer):
+    title = serializers.SlugRelatedField(queryset=Title.objects.all(), slug_field='name')
 
+    class Meta:
+        model = Rate
+        fields = ('note', 'title',)
+
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+    ratings = RatingShowSerializer(many=True, read_only=True)
     def create(self, validated_data):
         user_created = User.objects.create_user(username=validated_data['name'],
                                                 email=validated_data['email'],
@@ -40,7 +47,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Profile
-        fields = ('name', 'email')
+        fields = ('name', 'email', 'ratings')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
