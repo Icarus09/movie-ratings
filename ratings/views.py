@@ -3,7 +3,9 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from rest_framework.authentication import SessionAuthentication
 from .serializers import *
+from .permissions import *
 
 # Create your views here.
 class StarringList(generics.ListCreateAPIView):
@@ -56,6 +58,7 @@ class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     name = 'user-list'
+    permission_classes = (permissions.IsAuthenticated,)
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
@@ -66,11 +69,13 @@ class RatingList(generics.ListCreateAPIView):
     serializer_class = RatingSerializer
     queryset = Rate.objects.all()
     name = 'rate-list'
+    permission_classes = (IsUserOrReadOnly, permissions.IsAuthenticatedOrReadOnly)
 
 class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RatingSerializer
     queryset = Rate.objects.all()
     name = 'rate-detail'
+    permission_classes = (IsUserOrReadOnly,)
 
 class ApiRoot(APIView):
     name = 'api-root'

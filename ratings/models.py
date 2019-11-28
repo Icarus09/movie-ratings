@@ -27,7 +27,7 @@ class Title(models.Model):
     year = models.IntegerField()
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='titles')
     starring = models.ForeignKey(Starring, on_delete=models.CASCADE, related_name='starrings')
-    #average = models.FloatField(blank=True, null=True)
+    average = models.FloatField(blank=True, null=True)
 
     class Meta:
         ordering = ('name',)
