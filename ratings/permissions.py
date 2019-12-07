@@ -13,3 +13,10 @@ class IsUserLogged(permissions.BasePermission):
             return  True
         else:
             return  obj == request.user
+
+class IsAdminReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        else:
+            return request.user.is_superuser
