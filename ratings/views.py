@@ -32,11 +32,13 @@ class TitleList(generics.ListCreateAPIView):
     serializer_class = TitleSerializer
     queryset = Title.objects.all()
     name = 'title-list'
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class TitleDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TitleSerializer
     queryset = Title.objects.all()
     name = 'title-detail'
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 #todo: modificar depois
 class TitleStarringList(generics.ListCreateAPIView):
@@ -58,12 +60,13 @@ class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     name = 'user-list'
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsUserLogged)
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     name = 'user-detail'
+    permission_classes = (IsUserLogged,)
 
 class RatingList(generics.ListCreateAPIView):
     serializer_class = RatingSerializer
