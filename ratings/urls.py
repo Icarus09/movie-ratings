@@ -1,5 +1,5 @@
 from django.urls import path
-from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework_simplejwt import views as jwt_views
 from .views import *
 
 urlpatterns = [
@@ -17,6 +17,6 @@ urlpatterns = [
     path('profiles/<int:pk>', ProfileDetail.as_view(), name=ProfileDetail.name),
     path('ratings', RatingList.as_view(), name=RatingList.name),
     path('ratings/<int:pk>', RatingDetail.as_view(), name=RatingDetail.name),
-    path('api-token-auth', obtain_auth_token),
-    path('token/api/', ObtainToken.as_view(), name='token_obtain'),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]
