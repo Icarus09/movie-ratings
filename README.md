@@ -13,18 +13,25 @@ API que contém títulos (filmes e séries) e os usuários cadastrados podem cla
 
 ### Endpoints
 
-| url                      | Funcionalidade                                                       |
-|--------------------------|----------------------------------------------------------------------|
-| servidor/users           | Listagem e cadastro de usuários                                      |
-| servidor/users/1         | Informações de um usuário específico                                 |
-| servidor/starrings       | Listagem e cadastro de atores/atrizes que "estrelam" um título       |
-| servidor/starrings/1     | Informações de um ator/atriz específico                              |
-| servidor/titles          | Listagem e cadastro de títulos (filme/série) específicos             |
-| servidor/titles/1        | Informações de um título específico                                  |
-| servidor/genders         | Listagem e cadastro de gêneros para os títulos                       |
-| servidor/genders/1       | Informações de um gênero específico                                  |
-| servidor/starring-titles | Listagem de atores e os filmes em que os mesmos                      |
-| servidor/profile-list    | Listagem e cadastro de perfis                                        |
-| servidor/profile-list/1  | Informações de um perfil específico                                  |
-| servidor/ratings         | Listagem e cadastro de classificações/avaliações dos perfis do banco |
-| servidor/ratings/1       | Informações de uma classificação/avaliação específica                |
+| url                         | Funcionalidade                                                       |
+|-----------------------------|----------------------------------------------------------------------|
+| servidor/users              | Listagem e cadastro de usuários                                      |
+| servidor/users/1            | Informações de um usuário específico                                 |
+| servidor/starrings          | Listagem e cadastro de atores/atrizes que "estrelam" um título       |
+| servidor/starrings/1        | Informações de um ator/atriz específico                              |
+| servidor/titles             | Listagem e cadastro de títulos (filme/série) específicos             |
+| servidor/titles/1           | Informações de um título específico                                  |
+| servidor/genders            | Listagem e cadastro de gêneros para os títulos                       |
+| servidor/genders/1          | Informações de um gênero específico                                  |
+| servidor/starring-titles    | Listagem de atores e os filmes em que os mesmos                      |
+| servidor/profile-list       | Listagem e cadastro de perfis                                        |
+| servidor/profile-list/1     | Informações de um perfil específico                                  |
+| servidor/ratings            | Listagem e cadastro de classificações/avaliações dos perfis do banco |
+| servidor/ratings/1          | Informações de uma classificação/avaliação específica                |
+| servidor/api/token/         | Login com token JWT (JSON Web Token)                                 |
+| servidor/api/token/refresh/ | Atualização do token JWT                                             |
+
+### Importante:
+Por questões de segurança e organização, apenas o superusuário tem permissão para cadastrar gêneros, atores/atrizes e títulos. Um usuário comum cadastrado no banco pode apenas classificações/avaliações sobre os filmes. 
+
+### Vídeo explicativo (em breve)
