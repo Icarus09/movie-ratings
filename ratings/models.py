@@ -7,17 +7,12 @@ class Starring(models.Model):
     age = models.IntegerField()
     nationality = models.CharField(max_length=255)
 
-    class Meta:
-        ordering = ('name',)
 
     def __str__(self):
         return self.name
 
 class Gender(models.Model):
     name = models.CharField(max_length=255)
-
-    class Meta:
-        ordering = ('name',)
 
     def __str__(self):
         return self.name
@@ -28,9 +23,6 @@ class Title(models.Model):
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name='titles')
     starring = models.ForeignKey(Starring, on_delete=models.CASCADE, related_name='starrings')
 
-    class Meta:
-        ordering = ('name',)
-
     def __str__(self):
         return self.name
 
@@ -38,9 +30,6 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profiles')
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-
-    class Meta:
-        ordering = ('name',)
     
     def __str__(self):
         return self.name

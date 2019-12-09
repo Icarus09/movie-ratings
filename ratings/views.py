@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.authentication import SessionAuthentication
+from django_filters import NumberFilter, DateTimeFilter, AllValuesFilter 
 from django.contrib.auth.models import User
 from .serializers import *
 from .permissions import *
@@ -14,6 +15,10 @@ class StarringList(generics.ListCreateAPIView):
     queryset = Starring.objects.all()
     name = 'starring-list'
     permission_classes = (IsAdminOrReadOnly,)
+
+    filter_fields = ('name',)
+    search_fields = ('^name',)
+    ordering_fields = ('name',)
 
 class StarringDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = StarringSerializer
@@ -27,6 +32,10 @@ class GenderList(generics.ListCreateAPIView):
     name = 'gender-list'
     permission_classes = (IsAdminOrReadOnly,)
 
+    filter_fields = ('name',)
+    search_fields = ('^name',)
+    ordering_fields = ('name',)
+
 class GenderDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GenderSerializer
     queryset = Gender.objects.all()
@@ -39,6 +48,10 @@ class TitleList(generics.ListCreateAPIView):
     name = 'title-list'
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsAdminOrReadOnly,)
 
+    filter_fields = ('name',)
+    search_fields = ('^name',)
+    ordering_fields = ('name',)
+
 class TitleDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TitleSerializer
     queryset = Title.objects.all()
@@ -50,6 +63,10 @@ class TitleStarringList(generics.ListCreateAPIView):
     serializer_class = TitleStarringSerializer
     name = 'title-starring-list'
     queryset = Starring.objects.all()
+
+    filter_fields = ('name',)
+    search_fields = ('^name',)
+    ordering_fields = ('name',)
 
 class ProfileList(generics.ListCreateAPIView):
     serializer_class = ProfileSerializer
