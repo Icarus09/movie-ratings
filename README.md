@@ -34,4 +34,4 @@ API que contém títulos (filmes e séries) e os usuários cadastrados podem cla
 ### Importante:
 Por questões de segurança e organização, apenas o superusuário tem permissão para cadastrar gêneros, atores/atrizes e títulos. Um usuário comum cadastrado no banco pode apenas classificações/avaliações sobre os filmes. 
 
-### Vídeo explicativo (em breve)
+### [Vídeo demonstrativo](https://photos.app.goo.gl/Xe1HycFJHEsJz4CB8)
