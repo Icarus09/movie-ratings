@@ -42,11 +42,10 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5,
     'DEFAULT_FILTER_BACKENDS': ( 
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.SearchFilter',         
@@ -80,7 +79,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',  
+    'django.middleware.common.CommonMiddleware'
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'movie_rates.urls'
 
