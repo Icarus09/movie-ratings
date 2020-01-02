@@ -2,10 +2,21 @@
 API que contém títulos (filmes e séries) e os usuários cadastrados podem classificá-los dando uma nota e escrevendo uma resenha, se quiser, parecido com o [IMDB](https://www.imdb.com). Projeto desenvolvido para avaliação da disciplina de Programação para a Internet II. Antes de clonar/baixar o repositório, veja os requisitos.
 
 ### Requisitos
-* Python 3.7.4;
+* [Python 3.7.4](https://www.python.org);
 * Django 2.2.8;
 * Django Rest Framework 3.10.3;
-* Django Restframework Simple JWT 4.3.0.
+* Django Filter 2.2.0;
+* Django Crispy Forms;
+* Django Rest Framework Simple JWT 4.3.0.
+
+#### Todos são instaláveis via "pip install..."
+```
+  python -m pip install Django
+  pip install djangorestframework
+  pip install django-crispy-forms
+  pip install django-filter
+  pip install djangorestframework-simplejwt
+```
 
 ### Modelagem do projeto
 
@@ -34,4 +45,4 @@ API que contém títulos (filmes e séries) e os usuários cadastrados podem cla
 ### Importante:
 Por questões de segurança e organização, apenas o superusuário tem permissão para cadastrar gêneros, atores/atrizes e títulos. Um usuário comum cadastrado no banco pode apenas classificações/avaliações sobre os filmes. 
 
-### Vídeo explicativo (em breve)
+### [Vídeo demonstrativo](https://photos.app.goo.gl/Xe1HycFJHEsJz4CB8)
