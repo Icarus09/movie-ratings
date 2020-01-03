@@ -14,7 +14,7 @@ class TitleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Title
-        fields = '__all__'
+        fields =('url', 'pk', 'name', 'year', 'gender', 'starring')
 
 class GenderSerializer(serializers.HyperlinkedModelSerializer):
     titles = TitleSerializer(read_only=True, many=True)
