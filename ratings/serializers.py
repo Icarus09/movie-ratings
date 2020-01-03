@@ -6,7 +6,7 @@ class StarringSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Starring
-        fields = '__all__'
+        fields = ('url', 'pk', 'name', 'nationality', 'age')
 
 class TitleSerializer(serializers.HyperlinkedModelSerializer):
     starring = serializers.SlugRelatedField(slug_field='name', queryset=Starring.objects.all())
