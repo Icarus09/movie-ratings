@@ -47,7 +47,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = ('url', 'pk', 'name', 'email', 'user','ratings')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -61,4 +61,4 @@ class RatingSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Rate
-        fields = '__all__'
+        fields = ('url', 'pk', 'title', 'profile', 'note', 'review')
